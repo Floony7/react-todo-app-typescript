@@ -1,47 +1,44 @@
-import React, {useState} from 'react'
-import styled from 'styled-components'
-import { JSXElement } from '@babel/types'
+import React, { useState } from "react"
+import { Grid, Container } from "./styles/Layout"
+import TodoList from "./TodoList"
+import styled from "styled-components"
+import TodoForm from "./TodoForm"
 
 interface ITodo {
-    text: string;
-    id: number;
-    completed: boolean;
+  id: number
+  text: string
+  completed: boolean
 }
 
-const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 10vh 80vh 10vh;
-    grid-template-areas: 
-    "header header header"
-    ". main ."
-    "footer footer footer";
-`
-
-const Container = styled.div`
-    margin: 0 auto;
-    width: 50%;
+const Main = styled.main`
+  padding: 1rem 0;
 `
 
 export default function TodoApp() {
+  const [todos, setTodos] = useState<ITodo[]>([])
 
-const [todos, setTodos] = useState<ITodo[] | null>([])
+  const addTodo = (newText: string): void => {
+    setTodos([...todos, { id: 4, text: newText, completed: false }])
+  }
 
-    return (
-        <Grid>
-        <div className="header">
-            <Container>
-                Header
-            </Container>
-        </div>
-        <div className="main">Main</div>
-        <div className="footer">
+  return (
+    <Grid>
+      <div className="header">
         <Container>
-                Footer
+          <h3>On the Agenda</h3>
         </Container>
-        </div>
-        </Grid>
-    )
+      </div>
+      <Main className="main">
+        <Container>
+          <TodoForm addTodo={addTodo} />
+          <TodoList todos={todos} addTodo={addTodo} />
+        </Container>
+      </Main>
+      <div className="footer">
+        <Container>Footer</Container>
+      </div>
+    </Grid>
+  )
 }
 
 // id, task, completed

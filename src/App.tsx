@@ -1,12 +1,12 @@
-import React from 'react';
-import {createGlobalStyle} from 'styled-components'
-import styled from "styled-components"
-import TodoApp from './components/TodoApp'
+import React from "react"
+import { createGlobalStyle } from "styled-components"
+import TodoApp from "./components/TodoApp"
 
 const GlobalStyles = createGlobalStyle`
   :root {
     --orange: #ffc600;
     --blue: #2199e8;
+    --darkBlue: #08658a;
     --black: #393939;
     --gray: #3A3A3A;
     --lightGray: #E1E1E1;
@@ -25,35 +25,42 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(---lightGray);
+    background-color: var(--lightGray);
     padding: 0;
     margin: 0;
+    color: #fff;
     font-size: 1.5rem;
     line-height: 2;
   }
 
   .header {
     grid-area: header;
-    background-color: var(--blue);
+    background-color: var(--darkBlue);
+    margin-top: 1rem;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
   }
 
   .main {
     grid-area: main;
+    background-color: var(--blue);
   }
 
   .footer {
     grid-area: footer;
-    background-color: var(--gray);
+    background-color: var(--blue);
+    margin-bottom: 1rem;
+    border-radius: 0 0 10px 10px;
   }
 `
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
-    <GlobalStyles />
-    <TodoApp />
+      <GlobalStyles />
+      <TodoApp />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
