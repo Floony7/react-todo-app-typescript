@@ -3,13 +3,22 @@ import styled from "styled-components"
 import useInputState from "../hooks/useInputState"
 
 const FormWrap = styled.div`
-  width: 50%;
+  width: 100%;
+
+  form {
+    width: 100%;
+  }
 
   input[type="text"] {
-    height: 56px;
+    width: 100%;
     line-height: 1.3;
     font-size: 15px;
-    padding: 0 15px;
+    padding: 1rem;
+    border: none;
+
+    &:focus {
+      outline: 4px solid greenyellow;
+    }
   }
 `
 
